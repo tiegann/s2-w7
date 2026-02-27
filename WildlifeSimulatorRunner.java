@@ -48,9 +48,14 @@ public class WildlifeSimulatorRunner {
         
         // Run simulation for 10 years and record data year-by-year
         int simulationYears = 10;
+        simulator.simulate(simulationYears);
         
         
         // Display final populations
+
+        System.out.println("FINAL POPULATIONS:");
+        System.out.println("------------------");
+        System.out.println(simulator);
         
         
         // Display statistics

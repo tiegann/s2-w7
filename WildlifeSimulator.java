@@ -24,22 +24,34 @@ public class WildlifeSimulator {
      * Simulate one year of population changes for all species
      */
     public void simulateYear() {
-        //TODO
+        //call each species simulate year, loop species array
+        for(Species s : species){
+            if(s != null){
+                s.simulateYear();
+            }
+        }
+       
+
     }
     
     /**
      * Simulate multiple years
      */
     public void simulate(int years) {
-        //TODO
+        //loop for years, each year call simulate year
+        for(int i = 0; i<years; i++){
+            simulateYear();
+        }
     }
     
     /**
      * Get species at given index
      */
     public Species getSpecies(int index) {
-        //TODO
-        return null;
+        if(index >= this.species.length){
+            throw new IllegalArgumentException();
+        }
+        return this.species[index];
     }
     
     /**
@@ -53,7 +65,7 @@ public class WildlifeSimulator {
         String m = "";
         for(Species s: species){
             if(s != null)
-            m += s.toString() + "/n";
+            m += s.toString() + "\n";
         
     }
         return m;
@@ -63,8 +75,12 @@ public class WildlifeSimulator {
      * Get total wildlife count across all species
      */
     public double getTotalPopulation() {
-        //TODO
-        return 0.0;
+        long totalPop = 0;
+        for(Species s : species){
+            if(s != null)
+                totalPop += s.getPopulation();
+        }
+        return totalPop;
     }
     
     /**
@@ -72,7 +88,13 @@ public class WildlifeSimulator {
      */
     public int getMostPopulousIndex() {
         //TODO
-        return -1;
+        int maxPopIndex = 0;
+        for(int i = 0; i<speciesCount; i++){
+            if(this.species[maxPopIndex].getPopulation() < this.species[i].getPopulation()){
+                maxPopIndex = i;
+            }
+        }
+        return maxPopIndex;
     }
     
     /**
@@ -80,7 +102,13 @@ public class WildlifeSimulator {
      */
     public int getMostEndangeredIndex() {
         //TODO
-        return -1;
+        int minPopIndex = 0;
+        for(int i = 0; i<speciesCount; i++){
+            if(this.species[minPopIndex].getPopulation() > this.species[i].getPopulation()){
+                minPopIndex = i;
+            }
+        }
+        return minPopIndex;
     }
     
     public int getSpeciesCount() {

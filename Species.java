@@ -58,6 +58,13 @@ public class Species {
      */
     public void simulateYear() {
         //TODO
+        int change = (int)(this.birthRate - this.deathRate * population);
+        this.population = population + change; 
+
+        if(population > this.habitatCapacity){
+            population = habitatCapacity;
+        }
+        System.out.println("Simulate one year: " + this.name);
     }
     
     /**
